@@ -7,7 +7,7 @@ import './HomePage.css';
 export function HomePage() {
 
   const [products,setProducts] =useState([]);
-  cont [cart,setCart]=useState([]);
+  const [cart,setCart]=useState([]);
 
   useEffect(() => {
     axios.get('http://localhost:3000/api/products')
