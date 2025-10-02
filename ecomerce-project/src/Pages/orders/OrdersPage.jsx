@@ -73,7 +73,7 @@ export function OrdersPage({ cart }) {
                         </div>
 
                         <div className="product-actions">
-                          <a href="/tracking">
+                          <a href={`/tracking/${order.id}/${product.productId}`}>
                             <button className="track-package-button button-secondary">
                               Track package
                             </button>
