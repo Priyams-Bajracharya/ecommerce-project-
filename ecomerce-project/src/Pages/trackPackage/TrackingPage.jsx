@@ -29,6 +29,15 @@ export function TrackingPage({ cart }) {
   }
   const productItem = order.products.find((product)=> product.productId === productId)
 
+  const totalDeliveryTimeMs= productItem.estimatedDeliveryTimeMs-order.orderTimeMs;//calculate total delivery time 
+
+  const timePassedMs =dayjs().valueOf() -order.orderTimeMs; //calculate how much time has passed
+
+ const deliverPercent = totalDeliveryTimeMs > 0 
+  ? Math.min(100, Math.max(0, (timePassedMs / totalDeliveryTimeMs) * 100))
+  : 0;
+
+
   return (
     <>
       <title>Tracking</title>
@@ -49,7 +58,7 @@ export function TrackingPage({ cart }) {
           </div>
 
           <div className="product-info">
-            Quantity: 1
+            Quantity: {productItem.quantity}
           </div>
 
           <img className="product-image" src={productItem.product.image} />
@@ -67,7 +76,7 @@ export function TrackingPage({ cart }) {
           </div>
 
           <div className="progress-bar-container">
-            <div className="progress-bar"></div>
+            <div className="progress-bar" style={{width: `${deliverPercent}%`}}></div>
           </div>
         </div>
       </div>
